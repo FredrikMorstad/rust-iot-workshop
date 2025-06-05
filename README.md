@@ -165,6 +165,64 @@ Now that we have created our smart sensor package we can start making it "smart"
 
 <details> 
 <summary>Solution💡 </summary>
+
+```rust
+use embedded_dht_rs::{dht22::Dht22, SensorError, SensorReading};
+use embedded_hal::{
+    delay::DelayNs,
+    digital::{InputPin, OutputPin},
+};
+use esp_idf_svc::{
+    http::{
+        server::{Configuration, EspHttpServer},
+        Method,
+    },
+    io::{EspIOError, Write},
+};
+use std::{thread::sleep, time::Duration};
+
+pub struct SmartSensor<P: InputPin + OutputPin, D: DelayNs> {
+    sensor: Dht22<P, D>,
+}
+
+impl<P: InputPin + OutputPin, D: DelayNs> SmartSensor<P, D> {
+    pub fn new(pin: P, delay: D) -> Self {
+        Self {
+            sensor: Dht22::new(pin, delay),
+        }
+    }
+
+    pub fn run(&mut self, port: u16) -> Result<(), EspIOError> {
+        let conf = Configuration {
+            http_port: port,
+            ..Default::default()
+        };
+        let mut server = EspHttpServer::new(&conf)?;
+        server.fn_handler(
+            "/alive",
+            Method::Get,
+            |request| -> core::result::Result<(), EspIOError> {
+                let mut response = request.into_ok_response()?;
+                let res_text = "alive";
+                response.write_all(res_text.as_bytes())?;
+                Ok(())
+            },
+        )?;
+
+        println!("running server");
+
+        loop {
+            sleep(Duration::from_secs(1));
+        }
+
+        Ok(())
+    }
+
+    pub fn read(&mut self) -> Result<SensorReading<f32>, SensorError> {
+        self.sensor.read()
+    }
+}
+```
 </details>
 
 ## Part 4: Get measurements from server

@@ -25,6 +25,8 @@ fn main() -> Result<()> {
 
     let sysloop = EspSystemEventLoop::take()?;
 
+    println!("{:?}: {:?}", APP_CONFIG.wifi_ssid, APP_CONFIG.wifi_ssid);
+
     let _wifi = match wifi(
         APP_CONFIG.wifi_ssid,
         APP_CONFIG.wifi_pwd,
@@ -42,7 +44,7 @@ fn main() -> Result<()> {
     };
 
     let mut sensor = SmartSensor::new(pin, delay);
-    // sensor.run(4000).expect("error");
+    sensor.run(4000).expect("error");
 
     loop {
         match sensor.read() {
@@ -52,6 +54,6 @@ fn main() -> Result<()> {
             Err(e) => eprintln!("Error: {:?}", e),
         }
 
-        sleep(Duration::from_secs(1));
+        sleep(Duration::from_secs(2));
     }
 }
