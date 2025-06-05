@@ -2,13 +2,9 @@
 
 In this workshop we will create a "smart" humidity and temperature sensor. The goal is to become familiar with some embedded programming in rust on ESP controllers.
 
-## Project
-
-todo!
-
 ## Part 0: Setup
 
-To participate in this workshop you need three components: A esp microcontroller, a DHT sensor and a breadboard pluss wires.
+To participate in this workshop you need three components: A esp microcontroller, a DHT sensor and wires.
 
 #### 1. Controllers
 
@@ -39,6 +35,9 @@ We have two types of esp controllers to use, either the ESP32 D1 or ESP3286
 <details>
 <summary>breadboard and wires</summary>
 <img src="./assets/breadboard-jumper-wire.jpg" alt="dht22 sensor" width="200"/> <br>
+
+Ignore the breadbord, focus on the wires
+
 </details>
 
 #### Setup development environment
@@ -47,6 +46,7 @@ To build and upload our application onto a esp board we need to generate our pro
 
 <details>
 <summary> Setup esp on your computer 💻 </summary>
+
 To be able to work with our esp controller we need to setup our development environment. Esp has a [official book](https://docs.esp-rs.org/book/introduction.html) which explains how to work with esp controllers with rust
 
 ### Prerequisites
@@ -128,9 +128,7 @@ _If you got stuck at "Connecting...", hit the reset-button on the controller_
 -The first challenge is to create a program that reads sensor values at an interval. The first ting we need to so is
 -The first thing we need to do wire our sensor and controller on the breadboard correctly. Once that is done we can driver
 
-- +The first challenge is to create a program that reads sensor values at an interval. The first ting we need to so is
-  +The first thing we need to do wire our sensor and controller on the breadboard correctly. Once that is done we can driver
-  +++++++ Contents of side #2
+- The first challenge is to create a program that reads sensor values at an interval. The first ting we need to so is
 
 The first challenge is to create a program that reads sensor values at an interval.
 The first thing we need to do is wire our sensor and controller correctly.
