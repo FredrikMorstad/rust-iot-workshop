@@ -85,7 +85,7 @@ brew install cmake ninja dfu-util
 Install `espflash` to allow flashing data to the controller:
 
 ```
-cargo install cargo-espflash
+cargo install espflash
 ```
 
 3. Setup environment variables
