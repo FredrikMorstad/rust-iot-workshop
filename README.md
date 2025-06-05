@@ -125,11 +125,6 @@ _If you got stuck at "Connecting...", hit the reset-button on the controller_
 
 ## Part 1: Getting data from the sensor (using lib)
 
--The first challenge is to create a program that reads sensor values at an interval. The first ting we need to so is
--The first thing we need to do wire our sensor and controller on the breadboard correctly. Once that is done we can driver
-
-- The first challenge is to create a program that reads sensor values at an interval. The first ting we need to so is
-
 The first challenge is to create a program that reads sensor values at an interval.
 The first thing we need to do is wire our sensor and controller correctly.
 
